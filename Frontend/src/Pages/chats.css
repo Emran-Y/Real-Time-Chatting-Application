@@ -1,0 +1,75 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.chat-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.bottom-container{
+    display: flex;
+    justify-content: space-around;
+    overflow-x: hidden;
+    margin-block: 10px;
+}
+
+.bottom-container.hidden{
+    opacity: 0.1;
+}
+
+.top{
+    width: 100vw;
+    background-color: #1877f2;
+}
+
+.profile-expand{
+    background-color: white;
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    left: 40%;
+    top: 30%;
+    opacity: 1;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    border-top-right-radius: 0;
+   
+}
+
+.remove-button{
+    cursor: pointer;
+    position: sticky;
+    right: 0;
+    left: 100%;
+    margin: 4px;
+    font-size: 30px;
+}
+
+.profile-pic{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 1px solid black;
+}
+
+.profile-name{
+    font-size:20px ;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.email-title{
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.profile-email{
+    font-weight: 500;
+}
