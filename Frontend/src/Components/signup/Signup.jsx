@@ -52,7 +52,7 @@ function Signup() {
         .then((data) => {
           if (responseStatusOk) {
             history.push("/chats");
-            // localStorage.setItem("userInfor", JSON.stringify(data));
+            localStorage.setItem("userData", JSON.stringify(data));
             setIsSigning(false);
           } else {
             setIsError(true);

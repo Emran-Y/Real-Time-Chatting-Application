@@ -25,7 +25,8 @@ const accessChat = async (req, res) => {
         users: [userId, req.user._id],
       });
       const savedNewChat = await newChat.save();
-      res.status(200).json(savedNewChat);
+      const populatedChat = await savedNewChat.populate("users").execPopulate();
+      res.status(200).json(populatedChat);
     } catch (error) {
       console.error(error);
     }

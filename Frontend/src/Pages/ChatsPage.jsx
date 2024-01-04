@@ -1,35 +1,36 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from "react";
+import { useChatContext } from "../Context/chatContext";
+import Top from "../Components/top/top";
+import LeftBar from "../Components/leftBar/leftBar";
+import RightBar from "../Components/rightBar/rightBar";
+import { CiSquareRemove } from "react-icons/ci";
+import "./chats.css";
 
 function ChatsPage() {
-
-  const [chats,setChats] = useState([])
-
-   useEffect(() => {
-
-    const fetchChats = async () => {
-      try {
-        const response = await fetch('http://localhost:5000/api/chat')
-        const result = await response.json()
-        setChats(result)
-      } catch (error) {
-        console.error('Error fetching data:', error)
-      }
-    }
-
-    fetchChats()
-
-    
-    return () => {
-    }
-  }, [])
-
-  if(chats.length !== 0){
-    console.log(chats)
-  }
-
+  const { isPopUp, setIsPopUp, user } = useChatContext();
   return (
-    <div>ChatsPage</div>
-  )
+    <div className="chat-container">
+      <Top />
+      <div className={`bottom-container ${isPopUp && "hidden"}`}>
+        <LeftBar />
+        <RightBar />
+      </div>
+      {isPopUp && (
+        <div className="profile-expand">
+          <CiSquareRemove
+            onClick={() => setIsPopUp(false)}
+            className="remove-button"
+          />
+          <p className="profile-name">{user.name}</p>
+          <img src={user.pic} alt="profile pic" className="profile-pic" />
+          <p className="profile-email">
+            <span className="email-title">Email: </span>
+            {user.email}
+          </p>
+        </div>
+      )}
+    </div>
+  );
 }
 
-export default ChatsPage
+export default ChatsPage;
