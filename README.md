@@ -73,8 +73,6 @@ To run Vortext Verse locally:
    ```bash
    https://github.com/Emran-Y/Real-Time-Chatting-Application.git
 
-Certainly! Here's the consolidated version of the instructions:
-
 
 ## Navigate to the Repository
 ```bash
