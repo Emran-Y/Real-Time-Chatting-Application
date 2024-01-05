@@ -11,7 +11,8 @@ import UserCard from "../userCard/UserCard";
 import { set } from "mongoose";
 
 function Top() {
-  const { user, setIsPopUp, isPopUp, setChats, chats } = useChatContext();
+  const { user, setIsPopUp, isPopUp, setChats, chats, isSelectedUserPopUp } =
+    useChatContext();
   const [isDropDisplay, setIsDropDisplay] = useState(false);
   const history = useHistory();
   const [isSearchBar, setIsSearchBar] = useState(false);
@@ -84,7 +85,7 @@ function Top() {
     }
   };
   return (
-    <div className={`top ${isPopUp && "hidden"}`}>
+    <div className={`top ${(isPopUp || isSelectedUserPopUp) && "hidden"}`}>
       <div
         className="search-bar-container"
         onClick={() => {
