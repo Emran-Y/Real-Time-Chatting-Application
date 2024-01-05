@@ -22,11 +22,5 @@
     font-size: 12px;
 }
 
-.myChatCard:hover{
-    background-color: #1877f2;
-    color: white;
-}
 
-.myChatCard:focus{
-    background-color: red;
-}
+
