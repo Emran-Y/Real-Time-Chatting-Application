@@ -43,7 +43,7 @@ Quickly create a new account with the signup page.
 
 ### 3. **Home Page:**
 
-![Home Page]()
+![Home Page](https://github.com/Emran-Y/Real-Time-Chatting-Application/blob/master/Screenshots/homejpg.jpg)
 
 The central hub after login, displaying recent conversations and notifications.
 
