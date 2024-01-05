@@ -1,10 +1,8 @@
-Certainly! Here's a text you can add to the README of your project:
-
 ---
 
 ## Vortext Verse - Personal Chat App Project
 
-Vortext Verse is a personal project crafted using a React JS client, Node JS and Express JS server, and a MongoDB database, serves as a showcase in my portfolio.
+Vortext Verse is a personal project crafted for both enjoyment and as a testament to my skills in Full Stack development. This project, implemented using a React JS client, Node JS and Express JS server, and a MongoDB database.
 
 ### Features:
 
