@@ -60,7 +60,7 @@ function Login() {
         <div className="brandLogo">
           <h1 className="mainLogo">Vortex Verse</h1>
           <p className="sloganText">
-            Lorem ipsum dolor, sit amet consectetur adipisicing.
+            Vortext Verse - Where Conversations Unfold in Real Time Excellence.
           </p>
         </div>
 

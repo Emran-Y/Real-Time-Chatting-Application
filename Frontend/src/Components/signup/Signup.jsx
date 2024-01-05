@@ -91,7 +91,7 @@ function Signup() {
         <div className="logo">
           <h1 className="logo-main">Vortex Verse</h1>
           <p className="slogan">
-            Lorem ipsum dolor, sit amet consectetur adipisicing.
+            Vortext Verse - Where Conversations Unfold in Real Time Excellence.
           </p>
         </div>
 
