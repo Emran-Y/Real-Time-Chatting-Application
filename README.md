@@ -114,13 +114,9 @@ JWT_SECRET_KEY
 NODE_ENV
 ```
 
+## Feel free to explore the code and project structure. This project is a reflection of my passion for coding and showcasing my skills as a junior developer. I welcome any feedback or suggestions as I continue to develop and improve Vortext Verse.
 
-```
 
-This consolidated version provides a complete set of instructions for setting up and running the Vortext Verse application locally, including the necessary commands and environment variables.
 
----
-
-**Feel free to explore the code and project structure. This project is a reflection of my passion for coding and showcasing my skills as a junior developer. I welcome any feedback or suggestions as I continue to develop and improve Vortext Verse.**
 
 
