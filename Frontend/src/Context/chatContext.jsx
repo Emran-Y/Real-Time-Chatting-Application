@@ -6,6 +6,7 @@ const ChatProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [isPopUp, setIsPopUp] = useState(false);
   const [chats, setChats] = useState([]);
+  const [clickedUser, setClickedUser] = useState("");
 
   const history = useHistory();
 
@@ -49,7 +50,16 @@ const ChatProvider = ({ children }) => {
   // }, []);
   return (
     <ChatContext.Provider
-      value={{ user, setUser, isPopUp, setIsPopUp, chats, setChats }}
+      value={{
+        user,
+        setUser,
+        isPopUp,
+        setIsPopUp,
+        chats,
+        setChats,
+        clickedUser,
+        setClickedUser,
+      }}
     >
       {children}
     </ChatContext.Provider>
