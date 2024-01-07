@@ -22,11 +22,13 @@ function ChatsPage() {
     newGroupDisplayed,
     setNewGroupDisplayed,
   } = useChatContext();
+
   const [searchResult, setSearchResult] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [addedMembers, setAddedMembers] = useState([]);
   const [isError, setIsError] = useState(false);
   const [nameGroup, setNameGroup] = useState("");
+  const [newChatName, setNewChatName] = useState("");
   let theChat;
   let gTheChat;
 
@@ -36,7 +38,38 @@ function ChatsPage() {
       chats.find((chat) => chat._id === clickedUser).users
     );
     gTheChat = chats.find((chat) => chat._id === clickedUser);
+    console.log(gTheChat.groupAdmin, user._id);
   }
+
+  const handleNameChange = (e, groupId, newChatName) => {
+    e.preventDefault();
+
+    setIsSelectedUserPopUp(false);
+    fetch("http://localhost:5000/api/chat/rename", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user && user.token}`, // Add Bearer token to the headers
+      },
+      body: JSON.stringify({ name: newChatName, groupId: groupId }), // Convert data to JSON format
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+        chats = chats.filter((chat) => chat._id !== clickedUser);
+        setChats([...chats, data]);
+      })
+      .catch((error) => {
+        // Handle errors
+        console.error("Error:", error);
+      });
+    setNewGroupDisplayed(false);
+  };
 
   const handleAddGroupClick = (userId) => {
     const result = searchResult.find((res) => userId === res._id);
@@ -213,39 +246,62 @@ function ChatsPage() {
           </div>
         </div>
       )}
-      {gTheChat && !gTheChat.isGroupChat
-        ? isSelectedUserPopUp && (
-            <div className="profile-expand">
-              <CiSquareRemove
-                onClick={() => setIsSelectedUserPopUp(false)}
-                className="remove-button"
-              />
-              <p className="profile-name">{theChat.name}</p>
-              <img
-                src={theChat.pic}
-                alt="profile pic"
-                className="profile-pic"
-              />
-              <p className="profile-email">
-                <span className="email-title">Email: </span>
-                {theChat.email}
-              </p>
-            </div>
-          )
-        : isSelectedUserPopUp && (
-            <div className="profile-expand">
-              <CiSquareRemove
-                onClick={() => setIsSelectedUserPopUp(false)}
-                className="remove-button"
-              />
-              <p className="profile-name">{gTheChat.chatName}</p>
-              <img src="" alt="profile pic" className="profile-pic" />
-              <p className="profile-email">
-                <span className="email-title"> </span>
-                {theChat.email}
-              </p>
-            </div>
-          )}
+      {gTheChat && !gTheChat.isGroupChat ? (
+        isSelectedUserPopUp && (
+          <div className="profile-expand">
+            <CiSquareRemove
+              onClick={() => setIsSelectedUserPopUp(false)}
+              className="remove-button"
+            />
+            <p className="profile-name">{theChat.name}</p>
+            <img src={theChat.pic} alt="profile pic" className="profile-pic" />
+            <p className="profile-email">
+              <span className="email-title">Email: </span>
+              {theChat.email}
+            </p>
+          </div>
+        )
+      ) : isSelectedUserPopUp &&
+        user &&
+        gTheChat &&
+        gTheChat.groupAdmin._id === user._id ? (
+        <div className="profile-expand group-name-change">
+          <p
+            className="popup-remover"
+            onClick={() => setIsSelectedUserPopUp(false)}
+          >
+            x
+          </p>
+          <h2 className="group-name-change-title">Change Your Group Name</h2>
+          <form
+            onSubmit={(e) => handleNameChange(e, clickedUser, newChatName)}
+            className="group-name-change-container"
+          >
+            <input
+              type="text"
+              value={newChatName}
+              onChange={(e) => setNewChatName(e.target.value)}
+              className="group-name-change-text-field"
+              placeholder="new group name"
+            />
+            <button type="submit" className="group-name-change-btn">
+              update
+            </button>
+          </form>
+        </div>
+      ) : (
+        isSelectedUserPopUp && (
+          <div className="profile-expand group-name">
+            <p
+              className="popup-remover"
+              onClick={() => setIsSelectedUserPopUp(false)}
+            >
+              x
+            </p>
+            <h1 className="chat-name-display">{gTheChat.chatName}</h1>
+          </div>
+        )
+      )}
     </div>
   );
 }
