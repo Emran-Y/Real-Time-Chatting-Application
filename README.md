@@ -63,7 +63,7 @@ Engage in real-time conversations with the sleek chatting interface.
 ---
 ### 6. **Creating New Group UI**
 
-![Creating new Group UI](https://github.com/Emran-Y/Real-Time-Chatting-Application/blob/master/Screenshots/chattingOpened.jpg](https://github.com/Emran-Y/Real-Time-Chatting-Application/blob/master/Screenshots/createNewGUI.jpg))
+![Creating new Group UI](https://github.com/Emran-Y/Real-Time-Chatting-Application/blob/master/Screenshots/createNewGUI.jpg))
 
 ---
 ### 7. **Updating Group UI**
