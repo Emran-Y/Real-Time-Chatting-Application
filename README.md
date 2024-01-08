@@ -1,8 +1,8 @@
 ---
 
-## Vortext Verse - Personal Chat App Project
+## Vortex Verse - Personal Chat App Project
 
-Vortext Verse is a personal project crafted for both enjoyment and as a testament to my skills in Full Stack development. This project, implemented using a React JS client, Node JS and Express JS server, and a MongoDB database.
+Vortex Verse is a personal project crafted for both enjoyment and as a testament to my skills in Full Stack development. This project, implemented using a React JS client, Node JS and Express JS server, and a MongoDB database.
 
 ### Features:
 
@@ -128,7 +128,7 @@ JWT_SECRET_KEY
 NODE_ENV
 ```
 
-## Feel free to explore the code and project structure. This project is a reflection of my passion for coding and showcasing my skills as a junior developer. I welcome any feedback or suggestions as I continue to develop and improve Vortext Verse.
+## Feel free to explore the code and project structure. This project is a reflection of my passion for coding and showcasing my skills as a junior developer. I welcome any feedback or suggestions as I continue to develop and improve Vortex Verse.
 
 
 
