@@ -7,6 +7,11 @@ import { FaEyeSlash } from "react-icons/fa";
 import LeftText from "../LeftText/LeftText";
 import RightText from "../leftBar/RightText/RightText";
 import { format } from "timeago.js";
+import io from "socket.io-client";
+
+const ENDPOINT = "http://localhost:5000";
+let socket, selectedChatCompare;
+
 function RightBar() {
   const {
     clickedUser,
@@ -18,6 +23,10 @@ function RightBar() {
   const [msg, setMsg] = useState("");
   const [isHeading, setIsHeading] = useState(true);
   const [allMessages, setAllMessages] = useState([]);
+  const [socketConnected, setSocketConnected] = useState(false);
+  const [isTyping, setIsTyping] = useState(false);
+  const [typing, setTyping] = useState(false);
+
   let theChat;
 
   let newMessage;
@@ -38,16 +47,17 @@ function RightBar() {
     // );
   }
 
-  if (allMessages.length > 0) {
-    console.log(allMessages);
-  }
-  let messages = [];
-  if (allMessages.length > 0) {
-    console.log(allMessages);
-  }
+  // if (allMessages.length > 0) {
+  //   console.log(allMessages);
+  // }
+  // let messages = [];
+  // if (allMessages.length > 0) {
+  //   console.log(allMessages);
+  // }
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    socket.emit("stop typing", clickedUser);
     fetch("http://localhost:5000/api/message", {
       method: "POST",
       headers: {
@@ -64,6 +74,7 @@ function RightBar() {
       })
       .then((data) => {
         console.log(data);
+        socket.emit("new message", data);
         setAllMessages((allMessages) => {
           return [...allMessages, data];
         });
@@ -75,11 +86,23 @@ function RightBar() {
   };
 
   useEffect(() => {
+    socket = io(ENDPOINT);
+    socket.emit("setup", user);
+    socket.on("connected", () => setSocketConnected(true));
+    socket.on("typing", () => setIsTyping(true));
+    socket.on("stop typing", () => setIsTyping(false));
+  }, []);
+
+  useEffect(() => {
     const fetchMessages = async () => {
+      if (chats.length > 0) {
+        selectedChatCompare = chats.find((chat) => chat._id == clickedUser);
+      }
       await fetchAllMessages();
     };
 
     fetchMessages();
+    selectedChatCompare = chats.find((chat) => chat._id == clickedUser);
   }, [clickedUser]);
 
   const fetchAllMessages = async () => {
@@ -99,10 +122,43 @@ function RightBar() {
         }
         const data = await response.json();
         setAllMessages(data);
+        socket.emit("join chat", clickedUser);
       }
     } catch (error) {
       console.error("Error:", error);
     }
+  };
+
+  useEffect(() => {
+    socket.on("message recieved", (newMessageRecieved) => {
+      if (
+        !selectedChatCompare || // if chat is not selected or doesn't match current chat
+        selectedChatCompare._id !== newMessageRecieved.chat._id
+      ) {
+        //
+      } else {
+        setAllMessages([...allMessages, newMessageRecieved]);
+      }
+    });
+  });
+
+  const typingHandler = (e) => {
+    setMsg(e.target.value);
+    if (!socketConnected) return;
+    if (!typing) {
+      setTyping(true);
+      socket.emit("typing", clickedUser);
+    }
+    let lastTypingTime = new Date().getTime();
+    var timerLength = 3000;
+    setTimeout(() => {
+      var timeNow = new Date().getTime();
+      var timeDiff = timeNow - lastTypingTime;
+      if (timeDiff >= timerLength && typing) {
+        socket.emit("stop typing", clickedUser);
+        setTyping(false);
+      }
+    }, timerLength);
   };
 
   return (
@@ -153,11 +209,14 @@ function RightBar() {
                 </>
               )}
             </div>
+            {isTyping && (
+              <h4 style={{ textAlign: "left" }}>{user && user.name}Typing</h4>
+            )}
             <form className="rightBar-footer" onSubmit={(e) => handleSubmit(e)}>
               <input
                 type="text"
                 value={msg}
-                onChange={(e) => setMsg(e.target.value)}
+                onChange={(e) => typingHandler(e)}
                 className="msg-input"
                 placeholder="Send a message"
               />
