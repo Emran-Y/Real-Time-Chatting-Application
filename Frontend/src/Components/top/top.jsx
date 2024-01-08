@@ -11,8 +11,17 @@ import UserCard from "../userCard/UserCard";
 import { set } from "mongoose";
 
 function Top() {
-  const { user, setIsPopUp, isPopUp, setChats, chats, isSelectedUserPopUp } =
-    useChatContext();
+  const {
+    user,
+    setIsPopUp,
+    isPopUp,
+    setChats,
+    chats,
+    isSelectedUserPopUp,
+    notification,
+
+    setNotification,
+  } = useChatContext();
   const [isDropDisplay, setIsDropDisplay] = useState(false);
   const history = useHistory();
   const [isSearchBar, setIsSearchBar] = useState(false);
@@ -135,7 +144,12 @@ function Top() {
         <h2 className="brand-logo-title">Vortex Verse</h2>
       </div>
       <div className="profile">
-        <FaBell className="bell-icon" />
+        <div className="topbarIconItem">
+          <FaBell className="bell-icon" />
+          {notification.length > 0 && (
+            <span className="topbarIconBage">{notification.length}</span>
+          )}
+        </div>
         <div className="profile-main-cont">
           <img
             src={user && user.pic}

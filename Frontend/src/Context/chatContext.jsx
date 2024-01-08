@@ -9,6 +9,7 @@ const ChatProvider = ({ children }) => {
   const [clickedUser, setClickedUser] = useState("");
   const [isSelectedUserPopUp, setIsSelectedUserPopUp] = useState(false);
   const [newGroupDisplayed, setNewGroupDisplayed] = useState(false);
+  const [notification, setNotification] = useState([]);
 
   const history = useHistory();
 
@@ -65,6 +66,8 @@ const ChatProvider = ({ children }) => {
         setIsSelectedUserPopUp,
         newGroupDisplayed,
         setNewGroupDisplayed,
+        notification,
+        setNotification,
       }}
     >
       {children}

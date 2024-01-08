@@ -19,6 +19,8 @@ function RightBar() {
     user,
     isSelectedUserPopUp,
     setIsSelectedUserPopUp,
+    notification,
+    setNotification,
   } = useChatContext();
   const [msg, setMsg] = useState("");
   const [isHeading, setIsHeading] = useState(true);
@@ -135,12 +137,17 @@ function RightBar() {
         !selectedChatCompare || // if chat is not selected or doesn't match current chat
         selectedChatCompare._id !== newMessageRecieved.chat._id
       ) {
-        //
+        console.log("I was here");
+        if (!notification.includes(newMessageRecieved)) {
+          setNotification([newMessageRecieved, ...notification]);
+        }
       } else {
         setAllMessages([...allMessages, newMessageRecieved]);
       }
     });
   });
+
+  console.log(notification, "-------------------------");
 
   const typingHandler = (e) => {
     setMsg(e.target.value);
@@ -210,7 +217,7 @@ function RightBar() {
               )}
             </div>
             {isTyping && (
-              <h4 style={{ textAlign: "left" }}>{user && user.name}Typing</h4>
+              <p style={{ textAlign: "left" }}>{user && user.name}Typing</p>
             )}
             <form className="rightBar-footer" onSubmit={(e) => handleSubmit(e)}>
               <input

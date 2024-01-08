@@ -214,3 +214,24 @@
     font-size: 30px;
     font-weight: 500;
 }
+
+.topbarIconItem {
+    margin-right: 15px;
+    cursor: pointer;
+    position: relative;
+}
+
+.topbarIconBage {
+    width: 18px;
+    height: 18px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    color: white;
+    top: -6px;
+    right: -8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+}

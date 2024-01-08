@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./myChatCard.css";
 import { useChatContext } from "../Context/chatContext";
 
-function MyChatCard({ senderName, handleFunction, myId }) {
-  const { clickedUser } = useChatContext();
+function MyChatCard({ senderName, handleFunction, myId, latest }) {
+  const { clickedUser, notification } = useChatContext();
+
+  console.log(latest);
   return (
     <div
       className="myChatCard"
@@ -16,7 +18,7 @@ function MyChatCard({ senderName, handleFunction, myId }) {
       <p className="name-user">{senderName}</p>
       <p className="unread-message-container">
         <span className="unread-message">{senderName}: </span>
-        hi
+        {latest && latest.content}
       </p>
     </div>
   );
