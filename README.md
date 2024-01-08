@@ -61,6 +61,23 @@ find and connect with friends or users.
 Engage in real-time conversations with the sleek chatting interface.
 
 ---
+### 6. **Creating New Group UI**
+
+![Creating new Group UI](https://github.com/Emran-Y/Real-Time-Chatting-Application/blob/master/Screenshots/chattingOpened.jpg](https://github.com/Emran-Y/Real-Time-Chatting-Application/blob/master/Screenshots/createNewGUI.jpg))
+
+---
+### 7. **Updating Group UI**
+
+![Creating new Group UI](https://github.com/Emran-Y/Real-Time-Chatting-Application/blob/master/Screenshots/updateGnameUI.jpg))
+
+---
+### 8. **Real time Chatting UI**
+
+![Creating new Group UI](https://github.com/Emran-Y/Real-Time-Chatting-Application/blob/master/Screenshots/RealTimeChattingUI.jpg))
+
+---
+
+
 
 ## Getting Started
 
