@@ -19,9 +19,6 @@ Vortext Verse is a personal project crafted for both enjoyment and as a testamen
 - **Server:** Powered by Node JS and Express JS
 - **Database:** Utilizes MongoDB
 
-### Current Focus:
-
-I'm currently refining the Socket.io functionalities to enhance the real-time communication experience and another features.
 
 ## Pages
 
