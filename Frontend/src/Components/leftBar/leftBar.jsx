@@ -28,21 +28,22 @@ function LeftBar() {
         </div>
       </div>
       <div className="left-main">
-        {chats.map((chat) => {
-          return (
-            <MyChatCard
-              key={chat._id}
-              myId={chat._id}
-              latest={chat.latestMessage}
-              senderName={
-                chat.isGroupChat
-                  ? chat.chatName
-                  : senderNameExtractor(user._id, chat.users).name
-              }
-              handleFunction={() => handleChatClicked(chat._id)}
-            />
-          );
-        })}
+        {chats.length > 0 &&
+          chats.map((chat) => {
+            return (
+              <MyChatCard
+                key={chat._id}
+                myId={chat._id}
+                latest={chat.latestMessage}
+                senderName={
+                  chat.isGroupChat
+                    ? chat.chatName
+                    : senderNameExtractor(user._id, chat.users).name
+                }
+                handleFunction={() => handleChatClicked(chat._id)}
+              />
+            );
+          })}
       </div>
     </div>
   );
